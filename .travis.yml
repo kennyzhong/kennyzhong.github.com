@@ -11,9 +11,9 @@ branches:
 before_install:
 - npm install -g gulp
 - export TZ='Asia/Shanghai'
-- npm install -g hexo
-- npm install -g hexo-cli
-- npm install -g hexo-deployer-git
+- npm install hexo --save
+- npm install hexo-cli --save
+- npm install hexo-deployer-git --save
 install: npm install --save
 script:
 - git submodule init
