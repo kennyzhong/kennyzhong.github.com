@@ -14,7 +14,7 @@ before_install:
 - npm install -g hexo
 - npm install -g hexo-cli
 - npm install -g hexo-deployer-git
-install: npm install
+install: npm install --save
 script:
 - git submodule init
 - git submodule update
