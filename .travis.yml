@@ -1,0 +1,30 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+before_script:
+- npm install -g gulp
+branches:
+  only:
+  - hexo
+before_install:
+- npm install -g gulp
+- export TZ='Asia/Shanghai'
+- npm install -g hexo
+- npm install -g hexo-cli
+install: npm install
+script:
+- git submodule init
+- git submodule update
+- hexo clean && hexo g
+env:
+  global:
+  - secure: XXaONXr2Ju0BYoN1QslVKO1PiWu6j6HNw/0ctnrY8Bd8H6gvsZH8DZqger7GrT3bpdKloacKoooM4b2ernxs+Jn99enP0dWOqpkbQGO+0RLDF4hKM9F5feGCnsRXbCrYEG2gfVRGzHr1DHseIffzuz4ROQdun8Yi7Ho4wSiV9tB3DXTISOpHKzF/xy7OSgwidoTGx3A2jnNAYFTHP1hbl7d6RGiGbKWV03fnRrRWKGMst173zr6evC9cmLDAWeKdix7b5BzjaXW1HYa0sbbyJZxOJmy+Z9aiWRqME878Q5ApT90QkFcg/DlE48n/zi224xBUwDw3ia9RirXnVOgpm4+w4s8cmLIy/OwHcCHdbuiNpRdjd8ZxoJ4OIPNSrDynsU+OZPMU48YKEyTg4zzKDlo0AreswlYa1jpENLfmz8hH/YUP21j+ksGQNhXFBjjxz9dxAotD8g4Yq1qfndCWD6UBIsaP77A1JtQFCXRLFH5t+BZ2n9m1IlIN6pJufptb4PiAl+Mox7Hcw3+wIh91Tc4g5vvYyP4ty0Wq8TbK6z5HFjn/KRpVkuQ684wDbil3eWj6S26NQBEWiryVLqXwaGBkzRslEMnl/DEtQ0HwiUsSTRIMH04kZwWPJSD7ZDKusFntyHyDLqpUE+XT+7OkbjwUPjMh1E7LTjOMy2CrK2c=
+  - GH_REF: github.com/kennyzhong/kennyzhong.github.com.git
+after_success:
+- git config --global user.name "kenny"
+- git config --global user.email "flinife@gmail.com"
+- sed -i'' "s~git@github.com:kennyzhong/kennyzhong.github.com.git~https://${GH_TOKEN}:x-oauth-basic@github.com/kennyzhong/kennyzhong.github.com.git~"
+  _config.yml
+- hexo deploy
